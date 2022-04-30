@@ -6,3 +6,7 @@ Media related data was created using real data from an iTunes Library. It is pos
 
 ## Why the name Chinook?
 The name of this sample database was based on the Northwind database. Chinooks are winds in the interior West of North America, where the Canadian Prairies and Great Plains meet various mountain ranges. Chinooks are most prevalent over southern Alberta in Canada. Chinook is a good name choice for a database that intents to be an alternative to Northwind.
+
+# Schema Design
+ 
+![Database Schema](https://github.com/Abdelrhman2022/Query-a-Digital-Music-Store-Database-in-SQL/blob/main/Database%20Schema.png)
