@@ -64,7 +64,7 @@ select mt.Name , count(t.MediaTypeId) as total
     limit 5;
 ```
 
-4- Who's supportive emplخyee?
+4- Who's supportive employee?
 
 ```sql
 select concat(e.FirstName, " ", e.LastNAme) as 'Employee Name',
@@ -74,4 +74,61 @@ select concat(e.FirstName, " ", e.LastNAme) as 'Employee Name',
 			ON c.SupportRepId = e.EmployeeId
 		GROUP BY 1
         ORDER BY 2 DESC;
+```
+
+5- What is the Number of Tracks Sold by Genre?
+
+```sql
+SELECT g.name, 
+		COUNT(t.trackid) AS "Total tracks sold"
+	FROM genre g
+	JOIN Track t
+		ON g.genreid = t.genreid
+	JOIN InvoiceLine iv
+		ON iv.trackid = t.trackid
+	GROUP BY 1
+	ORDER BY 2 DESC
+limit 5;
+```
+
+6- What is the Total Spent Per Country Compared with Number of Tracks Sold?
+
+```sql
+SELECT i.billingcountry AS Country,
+		 SUM(iv.unitprice * iv.quantity) AS Sales,
+		 COUNT(t.trackid) AS "Total tracks sold"
+FROM Invoice i
+JOIN InvoiceLine iv
+ON i.invoiceid = iv.invoiceid
+JOIN track t
+ON t.trackid = iv.trackid
+GROUP BY i.billingcountry
+ORDER BY sales DESC;
+```
+
+7- What are The Top 10 Albums based on sales?
+
+```sql
+SELECT a.albumid, a.title, ar.name AS Artist_Name, SUM(iv.unitprice * iv.quantity) AS Sales
+FROM Artist ar
+JOIN Album a
+ON ar.artistid = a.artistid
+JOIN Track t
+ON a.albumid = t.albumid
+JOIN InvoiceLine iv
+ON iv.trackid = t.trackid
+GROUP BY a.albumid
+ORDER BY Sales DESC
+LIMIT 10;
+```
+
+8- What is the best-selling country?
+
+```sql
+select BillingCountry as country, 
+		Count(BillingCountry)  as "Total Sold" 
+	from invoice
+    group by 1
+    order by 2 desc
+    limit 10;
 ```
