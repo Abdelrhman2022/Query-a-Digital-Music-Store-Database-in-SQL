@@ -33,7 +33,7 @@ select mt.Name , count(t.MediaTypeId) as total
     order by total desc 
     limit 5;
     
--- Who's supportive emplخyee?
+-- Who's supportive employee?
 
 select concat(e.FirstName, " ", e.LastNAme) as 'Employee Name',
 		count(c.SupportRepId) as 'Total Support'
